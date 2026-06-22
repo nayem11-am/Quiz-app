@@ -1,0 +1,365 @@
+Phase 1: Project Structure
+gamified-learning/
+│
+├── index.html
+├── css/
+│   ├── style.css
+│   ├── auth.css
+│   ├── avatar.css
+│   ├── map.css
+│   ├── mission.css
+│
+├── js/
+│   ├── app.js
+│   ├── auth.js
+│   ├── avatar.js
+│   ├── category.js
+│   ├── map.js
+│   ├── mission.js
+│
+├── assets/
+│   ├── avatars/
+│   ├── icons/
+│   ├── backgrounds/
+│   └── badges/
+Phase 2: User Flow
+Sign Up
+   ↓
+Avatar Creation
+   ↓
+Category Selection
+   ↓
+World Map
+   ↓
+Kingdom
+   ↓
+Mission List
+   ↓
+Quiz/Challenge
+   ↓
+Reward Popup
+   ↓
+Level Up
+   ↓
+Next Kingdom Unlock
+Screen 1: Sign Up
+Components
+Logo
+Welcome Text
+Name Input
+Email Input
+Password Input
+Create Account Button
+Design
+
+Background:
+
+background:
+linear-gradient(
+135deg,
+#0f172a,
+#1e293b
+);
+
+Card:
+
+width:420px;
+border-radius:20px;
+padding:40px;
+
+Button:
+
+background:#6366f1;
+Action
+signupBtn.onclick = () => {
+ showAvatarScreen();
+}
+Screen 2: Avatar Creation
+
+This is where gamification starts.
+
+Layout
+Avatar Preview
+
+Hair
+Face
+Eyes
+Outfit
+
+[Previous]
+[Next]
+
+[Create Avatar]
+Avatar Parts
+
+Store data:
+
+let avatar = {
+ hair:1,
+ eyes:1,
+ face:1,
+ outfit:1
+}
+Preview Update
+updateAvatar();
+
+Every click changes avatar image layers.
+
+Screen 3: Category Selection
+UI
+Choose Your Learning Path
+
+[ School ]
+[ College ]
+[ University ]
+
+Card Style
+
+width:250px;
+height:280px;
+
+Hover:
+
+transform:translateY(-10px);
+Data
+categories = [
+ "School",
+ "College",
+ "University"
+];
+Action
+selectCategory("School");
+Screen 4: World Map
+
+This is the main attraction.
+
+Full Screen Fantasy Map
+
+Background image:
+
+Mountains
+Rivers
+Kingdoms
+Roads
+Clouds
+Kingdom Nodes
+Math Kingdom
+Science Kingdom
+History Kingdom
+Programming Kingdom
+
+Display:
+
+🔓 Open
+🔒 Locked
+⭐ Completed
+Example
+kingdoms = [
+ {
+  id:1,
+  name:"Math Kingdom",
+  unlocked:true
+ },
+ {
+  id:2,
+  name:"Science Kingdom",
+  unlocked:false
+ }
+]
+Screen 5: Kingdom Overview
+
+Clicking kingdom opens modal.
+
+Contains
+Kingdom Name
+
+Progress 70%
+
+Missions:
+Mission 1
+Mission 2
+Mission 3
+
+Boss Battle
+
+Start Journey
+
+Progress Bar
+
+width:70%;
+Screen 6: Mission List
+Layout
+Mission 1
+Mission 2
+Mission 3
+Mission 4
+
+Boss Battle
+
+Mission Card
+
+Mission Title
+XP Reward
+Coin Reward
+
+[Play]
+Example
+missions = [
+ {
+  title:"Basic Algebra",
+  xp:50,
+  coins:20
+ }
+]
+Screen 7: Quiz Challenge
+Question Card
+Question 1/10
+
+2 + 2 = ?
+
+A. 3
+B. 4
+C. 5
+D. 6
+Timer
+00:30
+Progress
+████████░░
+80%
+Logic
+checkAnswer();
+Screen 8: Reward Popup
+
+After mission completion.
+
+Animation
+Mission Complete!
+
++50 XP
++20 Coins
+
+New Badge Earned
+
+[Continue]
+
+Popup Animation
+
+transform:scale(0);
+
+to
+
+transform:scale(1);
+Screen 9: User Dashboard
+
+Top Bar:
+
+Avatar
+Name
+
+Level 8
+
+XP 840
+
+Coins 350
+Stats
+Completed Missions
+Badges
+Rank
+Kingdom Progress
+Screen 10: Level Up Modal
+
+When XP reaches threshold.
+
+LEVEL UP!
+
+Level 8 → Level 9
+
+Reward:
+100 Coins
+New Avatar Outfit
+
+[Awesome]
+Screen 11: Boss Battle
+
+Special mission screen.
+
+Layout
+Boss Image
+
+Dragon of Mathematics
+
+20 Questions
+
+Difficulty:
+Hard
+
+Reward
+
+500 XP
+200 Coins
+Rare Badge
+Screen 12: Leaderboard
+Table
+Rank
+Player
+Level
+XP
+
+Example
+
+#1 Alex
+#2 Sarah
+#3 John
+
+Current User Highlighted.
+
+Screen 13: 1v1 Battle
+Match Screen
+You VS Opponent
+
+Ready?
+Gameplay
+
+Both answer same questions.
+
+Winner:
+
+Highest Score
+Fastest Time
+Screen 14: Tournament
+Event Card
+Weekend Math Cup
+
+Players:
+500
+
+Prize:
+5000 Coins
+
+Join
+Screen 15: Premium Kingdom
+
+Locked Card
+
+Premium Kingdom
+
+Advanced Science
+
+🔒 Subscription Required
+
+Button:
+
+Unlock Premium
+Global Game Systems
+XP System
+xp += 50;
+Level Formula
+level = Math.floor(xp / 100);
+Coins
+coins += 20;
+Badges
+badges.push("Math Explorer");
+Kingdom Unlock
+if(progress >= 80){
+ unlockNextKingdom();
+}

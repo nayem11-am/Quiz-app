@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gamified Learning Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Interactive prototype</p>
+      <h1>Quiz Academy</h1>
+      <p class="subtle">A playful learning game inspired by your implementation plan.</p>
+    </div>
+    <div class="topbar-stats">
+      <div class="stat-chip"><span>Level</span><strong id="topLevel">8</strong></div>
+      <div class="stat-chip"><span>XP</span><strong id="topXp">840</strong></div>
+      <div class="stat-chip"><span>Coins</span><strong id="topCoins">350</strong></div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <aside class="sidebar">
+      <div class="profile-card">
+        <div class="avatar-preview" id="sidebarAvatar">Q</div>
+        <div>
+          <h2 id="playerName">Alex Starfall</h2>
+          <p id="playerTag">Math Explorer</p>
+        </div>
+      </div>
+
+      <nav class="nav-grid" id="navGrid">
+        <button class="nav-btn active" data-screen="signup">Sign Up</button>
+        <button class="nav-btn" data-screen="avatar">Avatar</button>
+        <button class="nav-btn" data-screen="category">Categories</button>
+        <button class="nav-btn" data-screen="map">World Map</button>
+        <button class="nav-btn" data-screen="kingdom">Kingdom</button>
+        <button class="nav-btn" data-screen="missions">Missions</button>
+        <button class="nav-btn" data-screen="quiz">Quiz</button>
+        <button class="nav-btn" data-screen="rewards">Rewards</button>
+        <button class="nav-btn" data-screen="dashboard">Dashboard</button>
+        <button class="nav-btn" data-screen="boss">Boss Battle</button>
+        <button class="nav-btn" data-screen="leaderboard">Leaderboard</button>
+        <button class="nav-btn" data-screen="battle">1v1 Battle</button>
+        <button class="nav-btn" data-screen="tournament">Tournament</button>
+        <button class="nav-btn" data-screen="premium">Premium</button>
+      </nav>
+
+      <section class="mini-card">
+        <h3>Global systems</h3>
+        <ul class="system-list">
+          <li><span>XP</span><strong>+50 per mission</strong></li>
+          <li><span>Level</span><strong>floor(xp / 100)</strong></li>
+          <li><span>Coins</span><strong>+20 on clear</strong></li>
+          <li><span>Badge</span><strong>Math Explorer</strong></li>
+        </ul>
+      </section>
+    </aside>
+
+    <section class="content">
+      <section class="screen active" id="screen-signup">
+        <div class="screen-card hero-card">
+          <p class="eyebrow">Screen 1</p>
+          <h2>Sign up for your adventure</h2>
+          <p class="lead">A clean, fantasy-inspired registration card with a strong CTA and a simple transition into the game.</p>
+          <div class="signup-form">
+            <label>
+              <span>Name</span>
+              <input id="signupName" type="text" value="Alex Starfall" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" value="alex@example.com" />
+            </label>
+            <label>
+              <span>Password</span>
+              <input type="password" value="password123" />
+            </label>
+            <button class="primary-btn" id="signupBtn">Create Account</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-avatar">
+        <div class="screen-card">
+          <div class="screen-head">
+            <div>
+              <p class="eyebrow">Screen 2</p>
+              <h2>Avatar creation</h2>
+            </div>
+            <button class="ghost-btn" data-next="category">Next screen</button>
+          </div>
+
+          <div class="avatar-builder">
+            <div class="avatar-stage">
+              <div class="avatar-portrait" id="avatarPortrait">
+                <div class="avatar-halo"></div>
+                <div class="avatar-layer hair" id="hairLayer">✦</div>
+                <div class="avatar-layer face" id="faceLayer">◌</div>
+                <div class="avatar-layer eyes" id="eyesLayer">◔◔</div>
+                <div class="avatar-layer outfit" id="outfitLayer">⌁</div>
+              </div>
+              <div class="avatar-labels">
+                <span id="avatarTitle">Forest Sage</span>
+                <span id="avatarMood">Ready for quests</span>
+              </div>
+            </div>
+
+            <div class="avatar-controls">
+              <div class="control-row">
+                <label>Hair</label>
+                <div class="stepper">
+                  <button data-part="hair" data-dir="-1">-</button>
+                  <strong id="hairValue">1</strong>
+                  <button data-part="hair" data-dir="1">+</button>
+                </div>
+              </div>
+              <div class="control-row">
+                <label>Face</label>
+                <div class="stepper">
+                  <button data-part="face" data-dir="-1">-</button>
+                  <strong id="faceValue">1</strong>
+                  <button data-part="face" data-dir="1">+</button>
+                </div>
+              </div>
+              <div class="control-row">
+                <label>Eyes</label>
+                <div class="stepper">
+                  <button data-part="eyes" data-dir="-1">-</button>
+                  <strong id="eyesValue">1</strong>
+                  <button data-part="eyes" data-dir="1">+</button>
+                </div>
+              </div>
+              <div class="control-row">
+                <label>Outfit</label>
+                <div class="stepper">
+                  <button data-part="outfit" data-dir="-1">-</button>
+                  <strong id="outfitValue">1</strong>
+                  <button data-part="outfit" data-dir="1">+</button>
+                </div>
+              </div>
+              <div class="inline-actions">
+                <button class="ghost-btn" id="avatarPrev">Previous</button>
+                <button class="primary-btn" id="createAvatarBtn">Create Avatar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-category">
+        <div class="screen-card">
+          <div class="screen-head">
+            <div>
+              <p class="eyebrow">Screen 3</p>
+              <h2>Choose your learning path</h2>
+            </div>
+            <button class="ghost-btn" data-next="map">Next screen</button>
+          </div>
+          <div class="category-grid">
+            <button class="category-card active" data-category="School">
+              <span class="category-icon">⌂</span>
+              <strong>School</strong>
+              <p>Friendly fundamentals and daily missions.</p>
+            </button>
+            <button class="category-card" data-category="College">
+              <span class="category-icon">◈</span>
+              <strong>College</strong>
+              <p>Faster pacing with more strategy.</p>
+            </button>
+            <button class="category-card" data-category="University">
+              <span class="category-icon">✶</span>
+              <strong>University</strong>
+              <p>Advanced challenges and boss battles.</p>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-map">
+        <div class="screen-card map-card">
+          <div class="screen-head">
+            <div>
+              <p class="eyebrow">Screen 4</p>
+              <h2>World map</h2>
+            </div>
+            <button class="ghost-btn" data-next="kingdom">Open kingdom</button>
+          </div>
+          <div class="map-scene">
+            <div class="cloud cloud-one"></div>
+            <div class="cloud cloud-two"></div>
+            <div class="road"></div>
+            <div class="kingdom-node open" data-kingdom="Math Kingdom">
+              <span>🔓</span>
+              <strong>Math Kingdom</strong>
+            </div>
+            <div class="kingdom-node locked" data-kingdom="Science Kingdom">
+              <span>🔒</span>
+              <strong>Science Kingdom</strong>
+            </div>
+            <div class="kingdom-node completed" data-kingdom="History Kingdom">
+              <span>⭐</span>
+              <strong>History Kingdom</strong>
+            </div>
+            <div class="kingdom-node premium" data-kingdom="Programming Kingdom">
+              <span>🔒</span>
+              <strong>Programming Kingdom</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-kingdom">
+        <div class="screen-card">
+          <div class="screen-head">
+            <div>
+              <p class="eyebrow">Screen 5</p>
+              <h2>Kingdom overview</h2>
+            </div>
+            <button class="ghost-btn" data-next="missions">Start journey</button>
+          </div>
+          <div class="kingdom-overview">
+            <div class="kingdom-banner">
+              <p>Math Kingdom</p>
+              <h3>70% progress</h3>
+              <div class="progress-track"><span style="width: 70%"></span></div>
+            </div>
+            <div class="mission-summary">
+              <article>
+                <strong>Mission 1</strong>
+                <span>Warm-up equations</span>
+              </article>
+              <article>
+                <strong>Mission 2</strong>
+                <span>Pattern mastery</span>
+              </article>
+              <article>
+                <strong>Mission 3</strong>
+                <span>Challenge duel</span>
+              </article>
+              <article class="boss-card">
+                <strong>Boss Battle</strong>
+                <span>Dragon of Mathematics</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-missions">
+        <div class="screen-card">
+          <div class="screen-head">
+            <div>
+              <p class="eyebrow">Screen 6</p>
+              <h2>Mission list</h2>
+            </div>
+            <button class="ghost-btn" data-next="quiz">Play quiz</button>
+          </div>
+          <div class="mission-grid" id="missionGrid">
+            <article class="mission-card">
+              <strong>Basic Algebra</strong>
+              <p>+50 XP · +20 Coins</p>
+              <button class="primary-btn mission-play">Play</button>
+            </article>
+            <article class="mission-card">
+              <strong>Speed Drills</strong>
+              <p>+40 XP · +15 Coins</p>
+              <button class="ghost-btn mission-play">Play</button>
+            </article>
+            <article class="mission-card">
+              <strong>Pattern Forge</strong>
+              <p>+60 XP · +25 Coins</p>
+              <button class="ghost-btn mission-play">Play</button>
+            </article>
+            <article class="mission-card boss">
+              <strong>Boss Battle</strong>
+              <p>+500 XP · +200 Coins</p>
+              <button class="ghost-btn mission-play">Play</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-quiz">
+        <div class="screen-card quiz-card">
+          <div class="screen-head">
+            <div>
+              <p class="eyebrow">Screen 7</p>
+              <h2>Quiz challenge</h2>
+            </div>
+            <div class="timer-pill">00:30</div>
+          </div>
+          <div class="quiz-meta">
+            <span>Question 1 / 10</span>
+            <span>80% progress</span>
+          </div>
+          <div class="progress-track"><span style="width: 80%"></span></div>
+          <div class="question-card">
+            <h3>2 + 2 = ?</h3>
+            <div class="answers">
+              <button class="answer-btn" data-correct="false">A. 3</button>
+              <button class="answer-btn" data-correct="true">B. 4</button>
+              <button class="answer-btn" data-correct="false">C. 5</button>
+              <button class="answer-btn" data-correct="false">D. 6</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-rewards">
+        <div class="screen-card">
+          <div class="screen-head">
+            <div>
+              <p class="eyebrow">Screen 8</p>
+              <h2>Reward popup</h2>
+            </div>
+            <button class="primary-btn" id="showRewardBtn">Show reward</button>
+          </div>
+          <p class="lead">This mimics the completion state with a scale-up reveal, XP and coins, and a badge unlock.</p>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-dashboard">
+        <div class="screen-card">
+          <div class="screen-head">
+            <div>
+              <p class="eyebrow">Screen 9</p>
+              <h2>User dashboard</h2>
+            </div>
+            <button class="ghost-btn" data-next="leaderboard">View leaderboard</button>
+          </div>
+          <div class="dashboard-grid">
+            <div class="dashboard-main">
+              <div class="dashboard-header">
+                <div class="avatar-badge" id="dashboardAvatar">AS</div>
+                <div>
+                  <h3 id="dashboardName">Alex Starfall</h3>
+                  <p>Level 8 · XP 840 · Coins 350</p>
+                </div>
+              </div>
+              <div class="stats-grid">
+                <article>
+                  <span>Completed missions</span>
+                  <strong>24</strong>
+                </article>
+                <article>
+                  <span>Badges</span>
+                  <strong>6</strong>
+                </article>
+                <article>
+                  <span>Rank</span>
+                  <strong>#12</strong>
+                </article>
+                <article>
+                  <span>Kingdom progress</span>
+                  <strong>70%</strong>
+                </article>
+              </div>
+            </div>
+            <div class="dashboard-side">
+              <h3>Unlocked rewards</h3>
+              <div class="reward-list">
+                <span>Math Explorer</span>
+                <span>Forest Cloak</span>
+                <span>Star Emblem</span>
+                <span>Golden Boots</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-boss">
+        <div class="screen-card boss-screen">
+          <div class="screen-head">
+            <div>
+              <p class="eyebrow">Screen 11</p>
+              <h2>Boss battle</h2>
+            </div>
+            <button class="primary-btn" id="bossStartBtn">Challenge boss</button>
+          </div>
+          <div class="boss-panel">
+            <div class="boss-art">🐉</div>
+            <div>
+              <h3>Dragon of Mathematics</h3>
+              <p>20 questions · Hard difficulty</p>
+              <div class="reward-bullets">
+                <span>500 XP</span>
+                <span>200 Coins</span>
+                <span>Rare Badge</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-leaderboard">
+        <div class="screen-card">
+          <div class="screen-head">
+            <div>
+              <p class="eyebrow">Screen 12</p>
+              <h2>Leaderboard</h2>
+            </div>
+            <button class="ghost-btn" data-next="battle">Try 1v1 battle</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Rank</th><th>Player</th><th>Level</th><th>XP</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>#1</td><td>Alex</td><td>18</td><td>1840</td></tr>
+                <tr><td>#2</td><td>Sarah</td><td>17</td><td>1710</td></tr>
+                <tr><td>#3</td><td>John</td><td>16</td><td>1640</td></tr>
+                <tr class="current-user"><td>#12</td><td>You</td><td>8</td><td>840</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-battle">
+        <div class="screen-card">
+          <div class="screen-head">
+            <div>
+              <p class="eyebrow">Screen 13</p>
+              <h2>1v1 battle</h2>
+            </div>
+            <button class="primary-btn" id="battleReadyBtn">Ready up</button>
+          </div>
+          <div class="versus">
+            <div class="duel-card">
+              <h3>You</h3>
+              <p>Fastest answers</p>
+            </div>
+            <div class="duel-vs">VS</div>
+            <div class="duel-card opponent">
+              <h3>Opponent</h3>
+              <p>Balanced strategy</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-tournament">
+        <div class="screen-card">
+          <div class="screen-head">
+            <div>
+              <p class="eyebrow">Screen 14</p>
+              <h2>Tournament</h2>
+            </div>
+            <button class="primary-btn">Join event</button>
+          </div>
+          <div class="event-card">
+            <h3>Weekend Math Cup</h3>
+            <p>500 players · Prize pool 5000 coins</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-premium">
+        <div class="screen-card premium-card">
+          <div class="screen-head">
+            <div>
+              <p class="eyebrow">Screen 15</p>
+              <h2>Premium kingdom</h2>
+            </div>
+            <button class="ghost-btn">Unlock premium</button>
+          </div>
+          <div class="locked-card">
+            <span class="lock-icon">🔒</span>
+            <h3>Advanced Science</h3>
+            <p>Subscription required to enter this kingdom.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div class="modal" id="rewardModal" aria-hidden="true">
+    <div class="modal-card pop">
+      <p class="eyebrow">Mission complete</p>
+      <h2>+50 XP</h2>
+      <h2>+20 Coins</h2>
+      <p>New badge earned: <strong>Math Explorer</strong></p>
+      <button class="primary-btn" data-close-modal="rewardModal">Continue</button>
+    </div>
+  </div>
+
+  <div class="modal" id="levelModal" aria-hidden="true">
+    <div class="modal-card pop">
+      <p class="eyebrow">Level up</p>
+      <h2>Level 8 → Level 9</h2>
+      <p>Reward: 100 coins and a new avatar outfit.</p>
+      <button class="primary-btn" data-close-modal="levelModal">Awesome</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
